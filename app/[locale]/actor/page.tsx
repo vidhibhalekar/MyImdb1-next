@@ -4,12 +4,11 @@ import WatchButton from "@/components/WatchButton";
 export default function ActorPage({
   params,
 }: {
-  params: {
-    locale: string;
-    id: string;
-  };
+  params: { locale: string; id: string };
 }) {
-  const actor = actors.find((a) => String(a.id) === params.id);
+  const { id } = params;
+
+  const actor = actors.find((a) => String(a.id) === id);
 
   if (!actor) {
     return (
