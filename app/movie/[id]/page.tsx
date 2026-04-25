@@ -14,12 +14,7 @@ import Link from "next/link";
 import WatchlistButton from "@/components/watchlistButton";
 import ReviewForm from "@/components/ReviewForm";
 
-// app/movie/[id]/page.tsx
-export default async function MovieDetails({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function MovieDetails({ params }: any) {
   const { id } = params;
 
   const Movies = [
@@ -67,7 +62,6 @@ export default async function MovieDetails({
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${movie.backdrop || movie.image})` }}
         >
-          {/* FIXED TYPO HERE */}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80" />
         </div>
 
@@ -157,6 +151,7 @@ export default async function MovieDetails({
                 <img
                   src={actor.image}
                   className="w-24 h-24 rounded-xl object-cover"
+                  alt={actor.name}
                 />
                 <div>
                   <h3 className="font-semibold">{actor.name}</h3>
