@@ -1,0 +1,73 @@
+IMDB-NEXT/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   ├── movies/
+│   │   └── top-rated/page.tsx
+│   ├── movie/[id]/page.tsx
+│   ├── actor/[id]/
+│   │   ├── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── error.tsx
+│   │   ├── loading.tsx
+│   │   ├── @awards/page.tsx
+│   │   ├── @social/page.tsx
+│   │   └── @similar/page.tsx
+│   ├── watchlist/
+│   │   ├── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── error.tsx
+│   │   └── loading.tsx
+│   ├── reviews/page.tsx
+│   └── api/
+│       ├── revalidate/route.ts
+│       └── watchlist/route.ts
+│
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── MovieCard.tsx
+│   ├── MovieCarousel.tsx
+│   ├── ActorProfile.tsx
+│   ├── ActorImage.tsx
+│   ├── FilmographyExplorer.tsx
+│   ├── FilmographyList.tsx
+│   ├── Filters.tsx
+│   ├── AwardsPanel.tsx
+│   ├── SocialPanel.tsx
+│   ├── SimilarActorsPanel.tsx
+│   ├── WatchlistToggle.tsx
+│   ├── WatchlistList.tsx
+│   └── WatchlistSync.tsx
+│
+├── lib/
+│   ├── firestore.ts
+│   ├── api.ts
+│   ├── cache.ts
+│   ├── i18n.ts
+│   ├── seo.ts
+│   └── watchlist.ts
+│
+├── public/
+│   ├── favicon.ico
+│   └── images/
+│
+├── config/
+│   ├── next.config.ts
+│   ├── tailwind.config.js
+│   ├── postcss.config.mjs
+│   ├── eslint.config.mjs
+│   └── tsconfig.json
+│
+├── docs/
+│   └── README.md
+│
+├── tests/                     # Automated testing
+│   ├── watchlist.spec.ts       # E2E tests for watchlist add/remove/sync
+│   ├── reviews.spec.ts         # E2E tests for review submission
+│   ├── movies.spec.ts          # E2E tests for movie listing/detail
+│   ├── actor.spec.ts           # E2E tests for actor profile + parallel routes
+│   └── accessibility.spec.ts   # a11y checks (axe, Playwright)
+│
+├── package.json
