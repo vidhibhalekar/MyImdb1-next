@@ -1,11 +1,22 @@
 let watchlist: any[] = [];
 let listeners: Function[] = [];
 
-// ✅ CORE
+// ======================
+// ✅ CORE STATE
+// ======================
 export function getState() {
   return watchlist;
 }
 
+// ✅ REQUIRED FIX (was missing)
+export function setState(newState: any[]) {
+  watchlist = Array.isArray(newState) ? [...newState] : [];
+  emit();
+}
+
+// ======================
+// ✅ ACTIONS
+// ======================
 export function addToWatchlist(movie: any) {
   if (!watchlist.find((m) => m.id === movie.id)) {
     watchlist.push(movie);
@@ -18,6 +29,9 @@ export function removeFromWatchlist(id: string) {
   emit();
 }
 
+// ======================
+// ✅ SUBSCRIPTION SYSTEM
+// ======================
 function emit() {
   listeners.forEach((l) => l(watchlist));
 }
@@ -31,13 +45,9 @@ export function subscribe(cb: Function) {
   };
 }
 
-/* --------------------------------------------------
-   ✅ ADD COMPATIBILITY LAYER (THIS FIXES YOUR ERRORS)
----------------------------------------------------*/
-
-// OLD NAME SUPPORT (what your app is using)
+// ======================
+// ✅ COMPATIBILITY LAYER
+// ======================
 export const getWatchlist = getState;
-
 export const addItem = addToWatchlist;
-
 export const removeItem = removeFromWatchlist;
