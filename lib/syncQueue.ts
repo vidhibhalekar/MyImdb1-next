@@ -1,12 +1,6 @@
+import type { QueueItem } from "@/types/sync";
 import { getDB } from "./idb";
 
-type QueueItem = {
-  id: string;
-  method: "POST" | "PUT" | "DELETE";
-  url: string;
-  body: string;
-  headers?: Record<string, string>;
-};
 
 // ==========================
 // ADD TO QUEUE
@@ -15,7 +9,6 @@ export async function addToQueue(
   item: Omit<QueueItem, "id">
 ) {
   const db = await getDB();
-
   const tx = db.transaction("queue", "readwrite");
 
   tx.objectStore("queue").put({

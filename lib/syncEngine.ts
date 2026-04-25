@@ -1,6 +1,7 @@
 import { getQueue, clearQueue } from "./syncQueue";
 import { mockApi } from "@/server/mockApi";
 import { putItem, deleteItem } from "./watchlistDB";
+import type { QueueItem } from "@/types/sync";
 
 export async function processQueue() {
   console.log("🔄 Sync running...");
@@ -26,10 +27,10 @@ export async function processQueue() {
       }
 
       if (item.type === "REMOVE") {
-        const serverItem = await mockApi.delete(item.payload.id);
+        await mockApi.delete(item.payload.id);
         await deleteItem(item.payload.id);
 
-        console.log("✅ REMOVE synced:", serverItem);
+        console.log("✅ REMOVE synced");
       }
     } catch (err) {
       console.log("❌ Sync failed (stopping queue):", err);
