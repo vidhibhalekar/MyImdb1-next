@@ -1,4 +1,4 @@
-import MovieList from "./movielist";
+import MovieList from "./MovieList";
 import { Suspense } from "react";
 
 export default function Page() {
@@ -7,4 +7,4 @@ export default function Page() {
       <MovieList />
     </Suspense>
   );
-} 
+}

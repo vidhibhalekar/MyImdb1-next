@@ -2,7 +2,7 @@
 
 import { SlidersHorizontal, Star } from "lucide-react";
 import Link from "next/link";
-import SearchClient from "./SearchClient";
+import SearchClient from "./searchClient";
 export const dynamic = "force-dynamic";
 
 
