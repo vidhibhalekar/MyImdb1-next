@@ -3,11 +3,17 @@ import { actors } from "@/lib/data";
 
 export async function GET(
   req: Request,
-  context: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
-  const { id } = await context.params; // ✅ correct
+  const { id } = params;
 
-  const actor = actors.find((a) => a.id.toString() === id);
+  const actor = actors.find(
+    (a) => String(a.id) === String(id)
+  );
+
+  // 🔍 Debug (temporary)
+  console.log("PARAM ID:", id);
+  console.log("FOUND ACTOR:", actor);
 
   if (!actor) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

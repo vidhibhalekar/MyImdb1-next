@@ -945,4 +945,217 @@ export const actors = [
     },
     upcomingProjects: [],
   },
+  {
+  id: 15,
+  name: "Tim Robbins",
+  genres: ["Drama", "Crime", "Thriller"],
+  birthDate: "October 16, 1958",
+  birthPlace: "West Covina, California, USA",
+  nationality: "American",
+  height: "6' 5\" (1.96 m)",
+  biography:
+    "Tim Robbins is an American actor, director, and screenwriter. He is known for his roles in critically acclaimed films such as The Shawshank Redemption and Mystic River. He has received an Academy Award and multiple Golden Globe nominations throughout his career.",
+
+  coverImage:
+    "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=1200&q=50",
+
+  image:
+"https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  awards: [
+    {
+      name: "Academy Award",
+      year: 2004,
+      category: "Best Supporting Actor",
+      film: "Mystic River",
+    },
+    {
+      name: "Golden Globe Nomination",
+      year: 2004,
+      category: "Best Supporting Actor",
+      film: "Mystic River",
+    },
+  ],
+
+  socialMedia: {
+    imdb: "https://www.imdb.com/name/nm0000209/",
+  },
+
+  knownFor: [
+    {
+      id: 1,
+      title: "The Shawshank Redemption",
+      role: "Andy Dufresne",
+      year: 1994,
+      rating: 9.3,
+      image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 2,
+      title: "Mystic River",
+      role: "Dave Boyle",
+      year: 2003,
+      rating: 8.0,
+      image: "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 3,
+      title: "The Player",
+      role: "Griffin Mill",
+      year: 1992,
+      rating: 7.5,
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=800&q=80",
+    },
+  ],
+
+  stats: {
+    moviesCount: 60,
+    totalAwards: 8,
+    avgRating: 7.9,
+    yearsActive: "1982-present",
+  },
+
+  upcomingProjects: [],
+},
+{
+  id: 16,
+  name: "Marlon Brando",
+  genres: ["Drama", "Crime"],
+  birthDate: "April 3, 1924",
+  birthPlace: "Omaha, Nebraska, USA",
+  nationality: "American",
+  height: "5' 9\" (1.75 m)",
+  biography:
+    "Marlon Brando was an American actor and film director, widely regarded as one of the greatest and most influential actors in film history. He is best known for A Streetcar Named Desire and The Godfather. He won two Academy Awards and transformed acting styles in cinema.",
+
+  coverImage:
+    "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=50",
+
+  image:
+"https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+  awards: [
+    {
+      name: "Academy Award",
+      year: 1955,
+      category: "Best Actor",
+      film: "On the Waterfront",
+    },
+    {
+      name: "Academy Award",
+      year: 1973,
+      category: "Best Actor",
+      film: "The Godfather",
+    },
+  ],
+
+  socialMedia: {
+    imdb: "https://www.imdb.com/name/nm0000008/",
+  },
+
+  knownFor: [
+    {
+      id: 1,
+      title: "The Godfather",
+      role: "Vito Corleone",
+      year: 1972,
+      rating: 9.2,
+      image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 2,
+      title: "Apocalypse Now",
+      role: "Colonel Kurtz",
+      year: 1979,
+      rating: 8.4,
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 3,
+      title: "A Streetcar Named Desire",
+      role: "Stanley Kowalski",
+      year: 1951,
+      rating: 8.0,
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=800&q=80",
+    },
+  ],
+
+  stats: {
+    moviesCount: 40,
+    totalAwards: 10,
+    avgRating: 8.6,
+    yearsActive: "1944-2004",
+  },
+
+  upcomingProjects: [],
+},
+{
+  id: 17,
+  name: "Christian Bale",
+  genres: ["Action", "Drama", "Thriller"],
+  birthDate: "January 30, 1974",
+  birthPlace: "Haverfordwest, Wales, UK",
+  nationality: "British",
+  height: "6' 0\" (1.83 m)",
+  biography:
+    "Christian Bale is a British actor known for his intense method acting and physical transformations. He gained global fame as Batman in The Dark Knight Trilogy and has won an Academy Award for The Fighter.",
+
+  coverImage:
+    "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=50",
+
+  image:
+"https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  awards: [
+    {
+      name: "Academy Award",
+      year: 2011,
+      category: "Best Supporting Actor",
+      film: "The Fighter",
+    },
+    {
+      name: "Golden Globe Award",
+      year: 2011,
+      category: "Best Supporting Actor",
+      film: "The Fighter",
+    },
+  ],
+
+  socialMedia: {
+    imdb: "https://www.imdb.com/name/nm0000288/",
+  },
+
+  knownFor: [
+    {
+      id: 1,
+      title: "The Dark Knight",
+      role: "Bruce Wayne / Batman",
+      year: 2008,
+      rating: 9.0,
+      image: "https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 2,
+      title: "American Psycho",
+      role: "Patrick Bateman",
+      year: 2000,
+      rating: 7.6,
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+    },
+    {
+      id: 3,
+      title: "The Fighter",
+      role: "Dicky Eklund",
+      year: 2010,
+      rating: 7.8,
+      image: "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80",
+    },
+  ],
+
+  stats: {
+    moviesCount: 45,
+    totalAwards: 18,
+    avgRating: 8.2,
+    yearsActive: "1986-present",
+  },
+
+  upcomingProjects: [],
+},
 ];

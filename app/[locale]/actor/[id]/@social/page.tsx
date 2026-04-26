@@ -1,81 +1,37 @@
-import { Instagram, Twitter, Film } from "lucide-react";
+import { getActor } from "@/lib/getActor";
+import Link from "next/link";
 
-export default async function SocialPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+interface SimilarPageProps {
+  params: {
+    id: string;
+  };
+}
 
-  const res = await fetch(`http://localhost:3000/api/actors/${id}`, {
-    cache: "no-store",
-  });
+export default async function SimilarPage({ params }: SimilarPageProps) {
+  const actor = await getActor(params.id);
 
-  if (!res.ok) {
-    return <div className="text-gray-400">No social data</div>;
+  if (!actor) {
+    return <div className="text-gray-400">Not found</div>;
   }
 
-  const actor = await res.json();
+  const knownFor = actor.knownFor ?? [];
 
-  if (!actor?.socialMedia) {
-    return <div className="text-gray-400">No social links available</div>;
+  if (knownFor.length === 0) {
+    return <div className="text-gray-400">No movies found</div>;
   }
 
   return (
-    <div className="grid sm:grid-cols-2 gap-4">
-      {/* INSTAGRAM */}
-      {actor.socialMedia.instagram && (
-        <a
-          href={actor.socialMedia.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 p-4 rounded-xl flex items-center gap-4 hover:scale-[1.02] transition"
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {knownFor.map((movie: any, i: number) => (
+        <Link
+          key={movie.id ?? i}
+          href={`/movies/${movie.id}`}
+          className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 hover:scale-[1.02] transition"
         >
-          <div className="bg-pink-500 p-3 rounded-full">
-            <Instagram className="text-white w-5 h-5" />
-          </div>
-          <div>
-            <p className="font-semibold">Instagram</p>
-            <p className="text-gray-400 text-sm">@{actor.name}</p>
-          </div>
-        </a>
-      )}
-
-      {/* TWITTER */}
-      {actor.socialMedia.twitter && (
-        <a
-          href={actor.socialMedia.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 p-4 rounded-xl flex items-center gap-4 hover:scale-[1.02] transition"
-        >
-          <div className="bg-blue-500 p-3 rounded-full">
-            <Twitter className="text-white w-5 h-5" />
-          </div>
-          <div>
-            <p className="font-semibold">Twitter</p>
-            <p className="text-gray-400 text-sm">@{actor.name}</p>
-          </div>
-        </a>
-      )}
-
-      {/* IMDb */}
-      {actor.socialMedia.imdb && (
-        <a
-          href={actor.socialMedia.imdb}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 p-4 rounded-xl flex items-center gap-4 hover:scale-[1.02] transition"
-        >
-          <div className="bg-yellow-500 p-3 rounded-full">
-            <Film className="text-black w-5 h-5" />
-          </div>
-          <div>
-            <p className="font-semibold">IMDb</p>
-            <p className="text-gray-400 text-sm">{actor.name}</p>
-          </div>
-        </a>
-      )}
+          <p className="font-semibold">{movie.title}</p>
+          <p className="text-sm text-gray-400">{movie.year || "—"}</p>
+        </Link>
+      ))}
     </div>
   );
-}
+} 

@@ -1,11 +1,11 @@
-export async function getActor(id: string) {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+import { actors } from "@/lib/data";
 
-  const res = await fetch(`${baseUrl}/api/actors/${id}`, {
-    next: { revalidate: 60, tags: ["actor"] },
-    cache: "force-cache",
-  });
+export type Actor = (typeof actors)[number];
 
-  return res.json();
+export async function getActor(id: string): Promise<Actor | null> {
+  const actor = actors.find(
+    (a) => String(a.id) === String(id)
+  );
+
+  return actor || null;
 }

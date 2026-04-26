@@ -1,89 +1,37 @@
+import { getActor } from "@/lib/getActor";
 import Link from "next/link";
-import Image from "next/image";
 
-export default async function SimilarPage({
-  params,
-}: {
-  params: Promise<{ id: string; locale: string }>;
-}) {
-  const { id, locale } = await params;
+interface SimilarPageProps {
+  params: {
+    id: string;
+  };
+}
 
-  const res = await fetch(
-    "http://localhost:3000/api/actors",
-    { cache: "no-store" }
-  );
+export default async function SimilarPage({ params }: SimilarPageProps) {
+  const actor = await getActor(params.id);
 
-  if (!res.ok) {
-    return <div className="text-gray-400">No data found</div>;
+  if (!actor) {
+    return <div className="text-gray-400">Not found</div>;
   }
 
-  const actors = await res.json();
+  const knownFor = actor.knownFor ?? [];
 
-  // ✅ current actor
-  const current = actors.find(
-    (a: any) => a.id.toString() === id
-  );
-
-  if (!current) {
-    return <div className="text-gray-400">Actor not found</div>;
+  if (knownFor.length === 0) {
+    return <div className="text-gray-400">No movies found</div>;
   }
-
-  // ✅ SIMILAR LOGIC (by genre)
-  const similarActors = actors.filter(
-    (a: any) =>
-      a.id.toString() !== id &&
-      a.genres?.some((g: string) =>
-        current.genres?.includes(g)
-      )
-  );
 
   return (
-    <div>
-      <h3 className="text-lg font-semibold mb-4">
-        Similar to {current.name}
-      </h3>
-
-      {/* EMPTY STATE */}
-      {similarActors.length === 0 && (
-        <p className="text-gray-400">
-          No similar actors found
-        </p>
-      )}
-
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {similarActors.map((item: any) => (
-          <Link
-            key={item.id}
-            href={`/${locale}/actor/${item.id}`}
-          >
-            <div className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-xl overflow-hidden hover:scale-105 transition cursor-pointer">
-
-              {/* IMAGE */}
-              <div className="relative h-[220px]">
-                <Image
-                  src={item.image || "/fallback.jpg"}
-                  alt={item.name}
-                  fill
-                  sizes="300px"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* INFO */}
-              <div className="p-3">
-                <h3 className="font-semibold text-white">
-                  {item.name}
-                </h3>
-
-                <p className="text-gray-400 text-sm mt-1">
-                  {item.genres?.join(" • ") || "N/A"}
-                </p>
-              </div>
-
-            </div>
-          </Link>
-        ))}
-      </div>
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {knownFor.map((movie: any, i: number) => (
+        <Link
+          key={movie.id ?? i}
+          href={`/movies/${movie.id}`}
+          className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 hover:scale-[1.02] transition"
+        >
+          <p className="font-semibold">{movie.title}</p>
+          <p className="text-sm text-gray-400">{movie.year || "—"}</p>
+        </Link>
+      ))}
     </div>
   );
-}
+} 

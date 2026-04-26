@@ -1,33 +1,24 @@
 import { Award } from "lucide-react";
+import { getActor } from "@/lib/getActor";
 
+interface AwardsPageProps {
+  params: { id: string };
+}
 
-export default async function AwardsPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default async function AwardsPage({ params }: AwardsPageProps) {
+  const actor = await getActor(params.id);
 
-  // ✅ fetch actor
-  const res = await fetch(
-    `http://localhost:3000/api/actors/${id}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    return <div className="text-gray-400">No awards found</div>;
+  if (!actor) {
+    return <div className="text-gray-400">Actor not found</div>;
   }
 
-  const actor = await res.json();
-
-  if (!actor?.awards || actor.awards.length === 0) {
+  if (!actor.awards?.length) {
     return <div className="text-gray-400">No awards available</div>;
   }
 
   return (
     <div className="grid gap-4">
-
-      {actor.awards.map((a: any, i: number) => (
+      {actor.awards.map((award: any, i: number) => (
         <div
           key={i}
           className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-xl p-4 flex gap-4 hover:shadow-lg hover:shadow-black/30 transition"
@@ -38,20 +29,19 @@ export default async function AwardsPage({
 
           <div>
             <p className="font-semibold text-lg">
-              {a?.name || "Unknown Award"}
+              {award?.name || "Unknown Award"}
             </p>
 
             <p className="text-gray-400 text-sm">
-              {a?.year || "—"} • {a?.category || "—"}
+              {award?.year || "—"} • {award?.category || "—"}
             </p>
 
             <p className="text-gray-300 text-sm mt-1">
-              Film: {a?.film || "N/A"}
+              Film: {award?.film || "N/A"}
             </p>
           </div>
         </div>
       ))}
-
     </div>
   );
-}
+} 
